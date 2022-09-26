@@ -727,6 +727,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 7
   orientation: {fileID: 1181740362}
+  groundDrag: 5
 --- !u!54 &573696398
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1111,7 +1112,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1619975939}
-  - component: {fileID: 1619975938}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1119,22 +1119,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!54 &1619975938
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1619975937}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 112
-  m_CollisionDetection: 1
 --- !u!4 &1619975939
 Transform:
   m_ObjectHideFlags: 0
