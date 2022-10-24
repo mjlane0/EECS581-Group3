@@ -8,10 +8,12 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
 
     public float moveSpeed;
+    public float sensX;
     public Transform orientation;
     float horizontalInput;
     float verticalInput;
     public float groundDrag;
+    float yRotation;
 
     Vector3 moveDirection;
 
@@ -29,6 +31,10 @@ public class PlayerMovement : MonoBehaviour
     {
         MyInput();
         rb.drag = groundDrag;
+        float mouseX = Input.GetAxisRaw("Mouse X") * Time.fixedDeltaTime * sensX;
+        yRotation += mouseX;
+        transform.rotation = Quaternion.Euler(0, yRotation, 0);
+        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 
     private void FixedUpdate()
