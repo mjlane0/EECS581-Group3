@@ -6,11 +6,10 @@ using UnityEditor;
 public class RayCast : MonoBehaviour
 {
 
-	public LayerMask NotEnemy;
-	public LayerMask Enemy;
+	public LayerMask NotEnemy, Enemy, Exit;
 	public GameObject dot;
 	public Material whiteMat, blueMat, pinkMat;
-	public Object prefabRed;
+	public Object prefabRed, prefabGreen;
 	public float Spread;
 	public float lowSpread, medSpread, highSpread;
 	public float lowDistance, medDistance, highDistance;
@@ -48,6 +47,11 @@ public class RayCast : MonoBehaviour
 			{
 				Debug.DrawLine(ray.origin, hitInfo.point, Color.red);
 				Object.Instantiate(prefabRed, hitInfo.point, Quaternion.identity);
+			}
+			if (Physics.Raycast(ray, out hitInfo, ShootDistance, Exit))
+			{
+				Debug.DrawLine(ray.origin, hitInfo.point, Color.red);
+				Object.Instantiate(prefabGreen, hitInfo.point, Quaternion.identity);
 			}
 		}
 

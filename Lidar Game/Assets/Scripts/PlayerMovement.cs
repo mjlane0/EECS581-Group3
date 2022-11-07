@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     float verticalInput;
     public float groundDrag;
     float yRotation;
+    public Vector3 startPos;
 
     Vector3 moveDirection;
 
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        startPos = transform.position;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
     }
@@ -35,6 +37,13 @@ public class PlayerMovement : MonoBehaviour
         yRotation += mouseX;
         transform.rotation = Quaternion.Euler(0, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        print(transform.position.y);
+        if(transform.position.y < 1.41)
+        {
+            print("yes");
+            transform.position = startPos;
+        }
+
     }
 
     private void FixedUpdate()
