@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class RayCast : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class RayCast : MonoBehaviour
 
 	void Start()
 	{
+		dot.GetComponent<MeshRenderer> ().material = whiteMat;
 		Spread = medSpread;
 		ShootDistance = medDistance;
 	}
@@ -88,24 +90,24 @@ public class RayCast : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.P))
 		{
-			int pFinal = pPresses % 3;
 			pPresses++;
+			int pFinal = pPresses % 3;
 			print("Color: " + pFinal);
 			switch(pFinal)
 			{
 				case 0:
 				{
-					dot.GetComponent<MeshRenderer> ().material = whiteMat;
+					dot.GetComponent<MeshRenderer> ().material = whiteMat;		
 					break;
 				}
 				case 1:
 				{
-					 dot.GetComponent<MeshRenderer> ().material = blueMat;
+					 dot.GetComponent<MeshRenderer> ().material = blueMat;	
 					break;
 				}
 				case 2:
 				{
-					 dot.GetComponent<MeshRenderer> ().material = pinkMat;
+					 dot.GetComponent<MeshRenderer> ().material = pinkMat;	
 					break;
 				}
 				default:

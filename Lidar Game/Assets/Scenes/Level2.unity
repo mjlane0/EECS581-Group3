@@ -1701,8 +1701,10 @@ MonoBehaviour:
   Enemy:
     serializedVersion: 2
     m_Bits: 512
-  prefabWhite: {fileID: 2577152729392656425, guid: 6bac76884d786304098e7c486441ebb2,
-    type: 3}
+  dot: {fileID: 2577152729392656425, guid: 6bac76884d786304098e7c486441ebb2, type: 3}
+  whiteMat: {fileID: 2100000, guid: e53c741750b61f2488a3c13dada85158, type: 2}
+  blueMat: {fileID: 2100000, guid: 1cf6b5e1cbf9a954d9568962d521b4a7, type: 2}
+  pinkMat: {fileID: 2100000, guid: d7754c70ad75eb84bb03a9a9a367aaef, type: 2}
   prefabRed: {fileID: 2577152729392656425, guid: 34ebe41d7cc2fa9439f3debf201ea504,
     type: 3}
   Spread: 0.1
