@@ -7,13 +7,16 @@ public class RayCast : MonoBehaviour
 
 	public LayerMask NotEnemy;
 	public LayerMask Enemy;
-	public Object prefabWhite;
+	public GameObject dot;
+	public Material whiteMat, blueMat, pinkMat;
 	public Object prefabRed;
 	public float Spread;
 	public float lowSpread, medSpread, highSpread;
 	public float lowDistance, medDistance, highDistance;
 	public float ShootDistance;
 	int qPresses = 0;
+	int pPresses = 0;
+
 
 	void Start()
 	{
@@ -24,6 +27,7 @@ public class RayCast : MonoBehaviour
 	void Update()
 	{
 		CheckModeSwitch();
+		CheckColorSwitch();
 
 		Ray ray = new Ray(transform.position, new Vector3(Random.Range(transform.up.x - Spread, transform.up.x + Spread), Random.Range(transform.up.y - Spread, transform.up.y + Spread), Random.Range(transform.up.z - Spread, transform.up.z + Spread)));
 		RaycastHit hitInfo;
@@ -32,7 +36,7 @@ public class RayCast : MonoBehaviour
 			if (Physics.Raycast(ray, out hitInfo, ShootDistance, NotEnemy))
 			{
 				Debug.DrawLine(ray.origin, hitInfo.point, Color.red);
-				Object.Instantiate(prefabWhite, hitInfo.point, Quaternion.identity);
+				Object.Instantiate(dot, hitInfo.point, Quaternion.identity);
 			}
 			else
 			{
@@ -72,6 +76,36 @@ public class RayCast : MonoBehaviour
 				{
 					Spread = highSpread;
 					ShootDistance = lowDistance;
+					break;
+				}
+				default:
+					break;
+			}
+		}
+	}
+
+	void CheckColorSwitch()
+	{
+		if (Input.GetKeyDown(KeyCode.P))
+		{
+			int pFinal = pPresses % 3;
+			pPresses++;
+			print("Color: " + pFinal);
+			switch(pFinal)
+			{
+				case 0:
+				{
+					dot.GetComponent<MeshRenderer> ().material = whiteMat;
+					break;
+				}
+				case 1:
+				{
+					 dot.GetComponent<MeshRenderer> ().material = blueMat;
+					break;
+				}
+				case 2:
+				{
+					 dot.GetComponent<MeshRenderer> ().material = pinkMat;
 					break;
 				}
 				default:
