@@ -14,6 +14,8 @@ public class RayCast : MonoBehaviour
 	public float lowSpread, medSpread, highSpread;
 	public float lowDistance, medDistance, highDistance;
 	public float ShootDistance;
+	public GameObject pauseMenu;
+    public bool isPaused;
 	int qPresses = 0;
 	int pPresses = 0;
 
@@ -27,31 +29,35 @@ public class RayCast : MonoBehaviour
 
 	void Update()
 	{
-		CheckModeSwitch();
-		CheckColorSwitch();
-
-		Ray ray = new Ray(transform.position, new Vector3(Random.Range(transform.up.x - Spread, transform.up.x + Spread), Random.Range(transform.up.y - Spread, transform.up.y + Spread), Random.Range(transform.up.z - Spread, transform.up.z + Spread)));
-		RaycastHit hitInfo;
-		if (Input.GetKey(KeyCode.Mouse0))
+		isPaused = pauseMenu.GetComponent<PauseMenu>().paused;
+        if(!isPaused)
 		{
-			if (Physics.Raycast(ray, out hitInfo, ShootDistance, NotEnemy))
+			CheckModeSwitch();
+			CheckColorSwitch();
+
+			Ray ray = new Ray(transform.position, new Vector3(Random.Range(transform.up.x - Spread, transform.up.x + Spread), Random.Range(transform.up.y - Spread, transform.up.y + Spread), Random.Range(transform.up.z - Spread, transform.up.z + Spread)));
+			RaycastHit hitInfo;
+			if (Input.GetKey(KeyCode.Mouse0))
 			{
-				Debug.DrawLine(ray.origin, hitInfo.point, Color.red);
-				Object.Instantiate(dot, hitInfo.point, Quaternion.identity);
-			}
-			else
-			{
-				Debug.DrawLine(ray.origin, ray.origin + ray.direction * 100, Color.green);
-			}
-			if (Physics.Raycast(ray, out hitInfo, ShootDistance, Enemy))
-			{
-				Debug.DrawLine(ray.origin, hitInfo.point, Color.red);
-				Object.Instantiate(prefabRed, hitInfo.point, Quaternion.identity);
-			}
-			if (Physics.Raycast(ray, out hitInfo, ShootDistance, Exit))
-			{
-				Debug.DrawLine(ray.origin, hitInfo.point, Color.red);
-				Object.Instantiate(prefabGreen, hitInfo.point, Quaternion.identity);
+				if (Physics.Raycast(ray, out hitInfo, ShootDistance, NotEnemy))
+				{
+					Debug.DrawLine(ray.origin, hitInfo.point, Color.red);
+					Object.Instantiate(dot, hitInfo.point, Quaternion.identity);
+				}
+				else
+				{
+					Debug.DrawLine(ray.origin, ray.origin + ray.direction * 100, Color.green);
+				}
+				if (Physics.Raycast(ray, out hitInfo, ShootDistance, Enemy))
+				{
+					Debug.DrawLine(ray.origin, hitInfo.point, Color.red);
+					Object.Instantiate(prefabRed, hitInfo.point, Quaternion.identity);
+				}
+				if (Physics.Raycast(ray, out hitInfo, ShootDistance, Exit))
+				{
+					Debug.DrawLine(ray.origin, hitInfo.point, Color.red);
+					Object.Instantiate(prefabGreen, hitInfo.point, Quaternion.identity);
+				}
 			}
 		}
 
@@ -118,5 +124,17 @@ public class RayCast : MonoBehaviour
 					break;
 			}
 		}
+	}
+	public void ColorWhite()
+	{
+		dot.GetComponent<MeshRenderer> ().material = whiteMat;
+	}
+	public void ColorBlue()
+	{
+		dot.GetComponent<MeshRenderer> ().material = blueMat;
+	}
+	public void ColorPink()
+	{
+		dot.GetComponent<MeshRenderer> ().material = pinkMat;
 	}
 }

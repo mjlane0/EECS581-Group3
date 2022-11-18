@@ -9,6 +9,9 @@ public class PlayerCam : MonoBehaviour
 
     public Transform orientation;
 
+    public GameObject pauseMenu;
+    public bool isPaused;
+
     float xRotation;
     float yRotation;
     // Start is called before the first frame update
@@ -21,16 +24,20 @@ public class PlayerCam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float mouseX = Input.GetAxisRaw("Mouse X") * Time.fixedDeltaTime * sensX;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.fixedDeltaTime * sensY;
-        yRotation += mouseX;
-        xRotation -= mouseY;
+        isPaused = pauseMenu.GetComponent<PauseMenu>().paused;
+        if(!isPaused)
+        {
+            float mouseX = Input.GetAxisRaw("Mouse X") * Time.fixedDeltaTime * sensX;
+            float mouseY = Input.GetAxisRaw("Mouse Y") * Time.fixedDeltaTime * sensY;
+            yRotation += mouseX;
+            xRotation -= mouseY;
 
-        //clamp rotation at 90 degrees
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            //clamp rotation at 90 degrees
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        //rotate cam adn player
-        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+            //rotate cam adn player
+            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        }
     }
 }

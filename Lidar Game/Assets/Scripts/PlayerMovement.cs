@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         yRotation += mouseX;
         transform.rotation = Quaternion.Euler(0, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
-        print(transform.position.y);
+        //print(transform.position.y);
         if(transform.position.y < 1.41)
         {
             print("yes");
