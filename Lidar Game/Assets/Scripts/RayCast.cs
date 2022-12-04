@@ -18,10 +18,12 @@ public class RayCast : MonoBehaviour
     public bool isPaused;
 	int qPresses = 0;
 	int pPresses = 0;
-
+	AudioSource audioData;
+	bool audioOn = false;
 
 	void Start()
 	{
+		audioData = GetComponent<AudioSource>();
 		dot.GetComponent<MeshRenderer> ().material = whiteMat;
 		Spread = medSpread;
 		ShootDistance = medDistance;
@@ -29,6 +31,7 @@ public class RayCast : MonoBehaviour
 
 	void Update()
 	{
+		print(audioOn);
 		isPaused = pauseMenu.GetComponent<PauseMenu>().paused;
         if(!isPaused)
 		{
@@ -39,6 +42,11 @@ public class RayCast : MonoBehaviour
 			RaycastHit hitInfo;
 			if (Input.GetKey(KeyCode.Mouse0))
 			{
+				if(audioOn == false)
+				{
+					audioData.Play(0);
+					audioOn = true;
+				}
 				if (Physics.Raycast(ray, out hitInfo, ShootDistance, NotEnemy))
 				{
 					Debug.DrawLine(ray.origin, hitInfo.point, Color.red);
@@ -57,6 +65,14 @@ public class RayCast : MonoBehaviour
 				{
 					Debug.DrawLine(ray.origin, hitInfo.point, Color.red);
 					Object.Instantiate(prefabGreen, hitInfo.point, Quaternion.identity);
+				}
+			}
+			else
+			{
+				if(audioOn == true)
+				{
+					audioData.Pause();
+					audioOn = false;
 				}
 			}
 		}
