@@ -2148,10 +2148,10 @@ MonoBehaviour:
   colorMenu: {fileID: 1468873723}
   levelMenu: {fileID: 1892085223}
   paused: 0
-  ul: {fileID: 0}
-  ur: {fileID: 0}
-  dr: {fileID: 0}
-  dl: {fileID: 0}
+  ul: {fileID: 830107335}
+  ur: {fileID: 830107335}
+  dr: {fileID: 830107335}
+  dl: {fileID: 830107335}
 --- !u!4 &784068447
 Transform:
   m_ObjectHideFlags: 0
