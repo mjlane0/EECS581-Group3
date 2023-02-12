@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
 
     public float moveSpeed;
+    public Transform playerCam;
     public float sensX;
     public Transform orientation;
     float horizontalInput;
@@ -15,6 +16,9 @@ public class PlayerMovement : MonoBehaviour
     public float groundDrag;
     float yRotation;
     public Vector3 startPos;
+    public bool dead;
+    AudioSource audioData;
+	bool audioOn = false;
 
     Vector3 moveDirection;
 
@@ -23,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioData = GetComponent<AudioSource>();
+        dead = false;
         startPos = transform.position;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
@@ -48,7 +54,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MovePlayer();
+        if(!dead)
+            MovePlayer();
     }
 
     private void MyInput()
@@ -61,8 +68,33 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
+ 
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        if(moveDirection.magnitude > 0)
+        {
+            if(audioOn == false)
+		    {
+			    audioData.Play(0);
+			    audioOn = true;
+		    }
+        }
+        else if(audioOn == true)
+        {
+            audioData.Pause();
+			audioOn = false;
+        }
+
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        rb.freezeRotation = false;
+        if (collision.gameObject.tag == "Enemy")
+        {
+            dead = true;
+            print("Hello");
+        }
     }
 }

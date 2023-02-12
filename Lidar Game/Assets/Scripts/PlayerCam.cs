@@ -14,9 +14,15 @@ public class PlayerCam : MonoBehaviour
 
     float xRotation;
     float yRotation;
+    public GameObject player;
+    bool dead;
+    public float deathCamRotate;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -24,8 +30,9 @@ public class PlayerCam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        dead = player.GetComponent<PlayerMovement>().dead;
         isPaused = pauseMenu.GetComponent<PauseMenu>().paused;
-        if(!isPaused)
+        if(!isPaused && !dead)
         {
             float mouseX = Input.GetAxisRaw("Mouse X") * Time.fixedDeltaTime * sensX;
             float mouseY = Input.GetAxisRaw("Mouse Y") * Time.fixedDeltaTime * sensY;
@@ -38,6 +45,13 @@ public class PlayerCam : MonoBehaviour
             //rotate cam adn player
             transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
             orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        }
+        if(dead)
+        {
+            if (transform.localRotation.eulerAngles.z < 90.0f)
+            {
+                transform.localRotation *= Quaternion.Euler(0.0f, 0.0f, deathCamRotate * Time.deltaTime);
+            }
         }
     }
 }
