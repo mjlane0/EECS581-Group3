@@ -13,6 +13,7 @@ public class UI : MonoBehaviour
     public GameObject player;
     public Text gameOverText;
     public Image fadeImage;
+    public Text liveNum;
 
     private float fadeInDuration = 1.0f;
     private float fadeOutDuration = 2.0f;
@@ -29,6 +30,8 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        TriggerGameOver();
+        liveNum.text = "Lives: " + lives.ToString();
         GracePeriod();
         CheckSpread();
     }
@@ -47,18 +50,20 @@ public class UI : MonoBehaviour
 
     public void TriggerGameOver()
     {
+            if(go == true)
+            {
+            gameOver.SetActive(true);
+            currentTime += Time.deltaTime;
+            float alpha = Mathf.Lerp(0, 1, currentTime / fadeOutDuration);
+            fadeImage.color = new Color(0, 0, 0, alpha);
 
-        gameOver.SetActive(true);
-        currentTime += Time.deltaTime;
-        float alpha = Mathf.Lerp(0, 1, currentTime / fadeOutDuration);
-        fadeImage.color = new Color(0, 0, 0, alpha);
+            float textAlpha = Mathf.Lerp(0, 1, currentTime / fadeInDuration);
+            gameOverText.color = new Color(224, 35, 35, textAlpha);
 
-        float textAlpha = Mathf.Lerp(0, 1, currentTime / fadeInDuration);
-        gameOverText.color = new Color(224, 35, 35, textAlpha);
-
-        if (currentTime >= fadeOutDuration)
-        {
-                SceneManager.LoadScene("MainMenu");
+            if (currentTime >= fadeOutDuration)
+            {
+                    SceneManager.LoadScene("MainMenu");
+            }
         }
     }
     void GracePeriod()
@@ -67,9 +72,9 @@ public class UI : MonoBehaviour
         //{
             if(!go && dead)
             {
+                lives--;
                 if(lives > 0)
                 {
-                    lives--;
                     player.transform.position = player.GetComponent<PlayerMovement>().startPos;
                     //yield return new WaitForSeconds(.5f);
                     player.GetComponent<PlayerMovement>().dead = false;
@@ -80,7 +85,6 @@ public class UI : MonoBehaviour
                 else
                 {
                     go = true;
-                    TriggerGameOver();
                 }
             }
         //}

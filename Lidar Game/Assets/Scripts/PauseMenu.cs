@@ -98,6 +98,18 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("Level2");
     }
 
+        public void Level3()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Level3");
+    }
+
+        public void Level4()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Level4");
+    }
+
     public void AdjustUI()
     {
         presses++;

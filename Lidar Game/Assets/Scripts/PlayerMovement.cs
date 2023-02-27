@@ -28,7 +28,6 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        go = uiObj.GetComponent<UI>().go;
         audioData = GetComponent<AudioSource>();
         dead = false;
         startPos = transform.position;
@@ -39,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        go = uiObj.GetComponent<UI>().go;
         MyInput();
         rb.drag = groundDrag;
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.fixedDeltaTime * sensX;
