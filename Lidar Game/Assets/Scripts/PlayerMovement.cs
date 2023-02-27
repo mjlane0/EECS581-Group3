@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
 
     public float moveSpeed;
+    public GameObject uiObj;
     public Transform playerCam;
     public float sensX;
     public Transform orientation;
@@ -19,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public bool dead;
     AudioSource audioData;
 	bool audioOn = false;
-
+ bool go; //gameover
     Vector3 moveDirection;
 
     Rigidbody rb;
@@ -27,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        go = uiObj.GetComponent<UI>().go;
         audioData = GetComponent<AudioSource>();
         dead = false;
         startPos = transform.position;
@@ -54,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(!dead)
+        if(!go)
             MovePlayer();
     }
 

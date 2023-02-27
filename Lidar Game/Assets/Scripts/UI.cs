@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
-
+    public int lives = 3;
     public Text spreadText;
     public GameObject gameOver;
     public GameObject gun;
@@ -18,6 +18,7 @@ public class UI : MonoBehaviour
     private float fadeOutDuration = 2.0f;
     private float currentTime = 0.0f;
     bool dead;
+    public bool go; //game over
 
     // Start is called before the first frame update
     void Start()
@@ -28,12 +29,7 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dead)
-        {
-            gameOver.SetActive(true);
-            TriggerGameOver();
-        }
-        dead = player.GetComponent<PlayerMovement>().dead;
+        GracePeriod();
         CheckSpread();
     }
 
@@ -52,6 +48,7 @@ public class UI : MonoBehaviour
     public void TriggerGameOver()
     {
 
+        gameOver.SetActive(true);
         currentTime += Time.deltaTime;
         float alpha = Mathf.Lerp(0, 1, currentTime / fadeOutDuration);
         fadeImage.color = new Color(0, 0, 0, alpha);
@@ -61,7 +58,32 @@ public class UI : MonoBehaviour
 
         if (currentTime >= fadeOutDuration)
         {
-            SceneManager.LoadScene("MainMenu");
+                SceneManager.LoadScene("MainMenu");
         }
+    }
+    void GracePeriod()
+    {
+        //if (dead) //dead just means an enemy touches us
+        //{
+            if(!go && dead)
+            {
+                if(lives > 0)
+                {
+                    lives--;
+                    player.transform.position = player.GetComponent<PlayerMovement>().startPos;
+                    //yield return new WaitForSeconds(.5f);
+                    player.GetComponent<PlayerMovement>().dead = false;
+                    go = false;
+                    //yield return new WaitForSeconds(.5f);
+                    
+                }
+                else
+                {
+                    go = true;
+                    TriggerGameOver();
+                }
+            }
+        //}
+        dead = player.GetComponent<PlayerMovement>().dead;
     }
 }

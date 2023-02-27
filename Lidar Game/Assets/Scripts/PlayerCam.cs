@@ -6,7 +6,7 @@ public class PlayerCam : MonoBehaviour
 {
     public float sensX;
     public float sensY;
-
+public GameObject uiObj;
     public Transform orientation;
 
     public GameObject pauseMenu;
@@ -16,6 +16,7 @@ public class PlayerCam : MonoBehaviour
     float yRotation;
     public GameObject player;
     bool dead;
+    bool go; //gameover
     public float deathCamRotate;
 
 
@@ -31,8 +32,9 @@ public class PlayerCam : MonoBehaviour
     void Update()
     {
         dead = player.GetComponent<PlayerMovement>().dead;
+        go = uiObj.GetComponent<UI>().go;
         isPaused = pauseMenu.GetComponent<PauseMenu>().paused;
-        if(!isPaused && !dead)
+        if(!isPaused && !go)
         {
             float mouseX = Input.GetAxisRaw("Mouse X") * Time.fixedDeltaTime * sensX;
             float mouseY = Input.GetAxisRaw("Mouse Y") * Time.fixedDeltaTime * sensY;
@@ -46,7 +48,7 @@ public class PlayerCam : MonoBehaviour
             transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
             orientation.rotation = Quaternion.Euler(0, yRotation, 0);
         }
-        if(dead)
+        if(go)
         {
             if (transform.localRotation.eulerAngles.z < 90.0f)
             {

@@ -3931,6 +3931,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Setup
       objectReference: {fileID: 0}
+    - target: {fileID: 1364012020113125135, guid: b358d2e80924fed47bafe2d79e8d7331,
+        type: 3}
+      propertyPath: lives
+      value: 10000
+      objectReference: {fileID: 0}
     - target: {fileID: 1364012020830401492, guid: b358d2e80924fed47bafe2d79e8d7331,
         type: 3}
       propertyPath: m_LocalPosition.z
