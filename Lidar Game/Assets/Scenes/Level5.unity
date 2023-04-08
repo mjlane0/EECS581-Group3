@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -1193,6 +1193,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 168140881701591884, guid: cb7775518c732034ba7488ec54c51511,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 168140882354037441, guid: cb7775518c732034ba7488ec54c51511,
         type: 3}
       propertyPath: m_Layer
@@ -1298,6 +1303,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1250268014052825269, guid: cb7775518c732034ba7488ec54c51511,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1392053073763814994, guid: cb7775518c732034ba7488ec54c51511,
         type: 3}
       propertyPath: m_Layer
@@ -1363,6 +1373,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7641390762618125373, guid: cb7775518c732034ba7488ec54c51511,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7641390762976363952, guid: cb7775518c732034ba7488ec54c51511,
         type: 3}
       propertyPath: m_Layer
@@ -1382,6 +1397,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919635515334800961, guid: cb7775518c732034ba7488ec54c51511,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8919635516041236428, guid: cb7775518c732034ba7488ec54c51511,
         type: 3}
@@ -2759,6 +2779,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2246031886087177760, guid: 349999bb8012ba946a5df78520fcf4fb,
         type: 3}
+      propertyPath: speed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2246031886087177760, guid: 349999bb8012ba946a5df78520fcf4fb,
+        type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1123645288}
@@ -2817,10 +2842,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2246031886087177763, guid: 349999bb8012ba946a5df78520fcf4fb,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2246031886087177772, guid: 349999bb8012ba946a5df78520fcf4fb,
         type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2246031886087177772, guid: 349999bb8012ba946a5df78520fcf4fb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 349999bb8012ba946a5df78520fcf4fb, type: 3}
@@ -11130,7 +11165,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1859983807
 Light:
   m_ObjectHideFlags: 0

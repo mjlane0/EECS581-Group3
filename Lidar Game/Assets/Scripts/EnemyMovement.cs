@@ -8,12 +8,23 @@ public class EnemyMovement : MonoBehaviour
     public Transform player;
     public float speed = 5f;
     public NavMeshAgent agent;
+    public float chaseRange;
 
+    void Start()
+    {
+        agent.speed = speed;
+    }
     void Update()
     {
-        //Vector3 direction = player.position - transform.position;
-        //transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-        //transform.rotation = Quaternion.LookRotation(direction);
-        agent.SetDestination(player.position);
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+        if (distanceToPlayer <= chaseRange)
+        {
+            agent.SetDestination(player.position);
+        }
+        else
+        {
+            agent.ResetPath();
+        }
     }
 }

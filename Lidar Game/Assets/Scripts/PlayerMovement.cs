@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
 
     [Header("Movement")]
 
+    public bool finishJob = false;
     public float moveSpeed;
     public GameObject uiObj;
     public Transform playerCam;
@@ -92,11 +94,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
+        if(finishJob)
+        {
+            SceneManager.LoadScene(0);
+        }
         rb.freezeRotation = false;
         if (collision.gameObject.tag == "Enemy")
         {
             dead = true;
             print("Hello");
         }
+    }
+
+    public void SetFinishJob()
+    {
+        finishJob = true;
     }
 }

@@ -462,6 +462,7 @@ GameObject:
   - component: {fileID: 934036879}
   - component: {fileID: 934036878}
   - component: {fileID: 934036877}
+  - component: {fileID: 934036880}
   m_Layer: 5
   m_Name: Menu Button
   m_TagString: Untagged
@@ -532,8 +533,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 102900000, guid: 03f9d74cec8e4b94a29d2dfd177c821b, type: 3}
-        m_MethodName: 
+      - m_Target: {fileID: 934036880}
+        m_MethodName: LoadLevel1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -542,7 +543,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
 --- !u!114 &934036878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -580,6 +581,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 934036875}
   m_CullTransparentMesh: 0
+--- !u!114 &934036880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934036875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e448cd4e403d54ba780cd190c64d1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1133627158
 GameObject:
   m_ObjectHideFlags: 0

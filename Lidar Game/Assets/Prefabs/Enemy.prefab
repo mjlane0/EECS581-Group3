@@ -111,6 +111,7 @@ MonoBehaviour:
   player: {fileID: 0}
   speed: 5
   agent: {fileID: 2246031886087177766}
+  chaseRange: 50
 --- !u!195 &2246031886087177766
 NavMeshAgent:
   m_ObjectHideFlags: 0
