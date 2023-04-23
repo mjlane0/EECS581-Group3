@@ -4,6 +4,15 @@ Sam Jerguson
 Created November 6, 2022
 Revised Feb 27, 2022
 This file creates the user interface for the player and includes objects such as the gun as well as the other heads up display pieces.
+Preconditions: 
+- none
+Postconditions: 
+- UI displays the following:
+Error/exception conditions: 
+- none
+Side Effects: 
+-The game over text and image will fade in and the game will return to the main menu scene when the game is over.
+
 No known Faults
 */
 using System.Collections;
