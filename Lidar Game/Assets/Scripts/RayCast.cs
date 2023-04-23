@@ -1,4 +1,13 @@
-﻿using System.Collections;
+/*
+RayCast Artifact
+Sam Jerguson
+Created October 23, 2022
+Revised December 4 2022
+This file controls and automates all raycasting features within teh game
+No known Faults
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;

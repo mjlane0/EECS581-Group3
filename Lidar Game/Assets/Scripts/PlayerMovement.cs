@@ -1,4 +1,21 @@
-﻿using System.Collections;
+/*
+Player Movement Artifact
+
+Sam Jerguson
+
+Created October 23, 2022
+Revised April 8, 2022
+
+This file describes and controls the player's movement in the game including move speed, player cam, and other fundamental assets that aid the 
+player in traversing the enviornment
+
+No known Faults
+
+
+*/
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;

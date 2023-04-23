@@ -1,4 +1,13 @@
-﻿using System.Collections;
+﻿/*
+Room Enviornment Artifact
+Sam Jerguson
+Created April 8, 2022
+Revised April 8, 2022
+This file controls the walls in the enviornment of the game, through the 4 wall variables and an update function it is able to calculate and move the position of the walls.
+No known Faults
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
