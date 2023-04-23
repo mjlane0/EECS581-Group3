@@ -1,4 +1,12 @@
-﻿using System.Collections;
+/*
+Bootup
+Sam Jerguson
+Created Feb 27, 2023
+Revised Feb 27, 2023
+This file controls the unity engine bootup, and begins the music as well as the initiial start of the game along with an update function that is called.
+No known Faults
+*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
