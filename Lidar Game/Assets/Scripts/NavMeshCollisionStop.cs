@@ -1,4 +1,18 @@
-﻿using UnityEngine;
+﻿/*
+Name of Artifact: NavMeshCollisionStop.cs
+Description: This script prevents two or more NavMeshAgents from colliding with one another by stopping their movement when they get too close.
+Programmer's Name: Sam Jerguson
+Date Created: 3/12/2023
+Dates Updated: 3/12/2023 - Description: Whole file was completed in one session. Author: Sam Jerguson
+Preconditions: The script requires the GameObjects to have a NavMeshAgent component.
+Postconditions: NavMeshAgents will stop moving when they get too close to each other, avoiding collisions.
+Error/exception conditions: None.
+Side Effects: The script modifies the isStopped property of the NavMeshAgent component.
+Invariants: The radius values of the NavMeshAgent components must be non-negative.
+Known faults: None.
+*/
+
+using UnityEngine;
 using UnityEngine.AI;
 
 public class AvoidNavMeshOverlap : MonoBehaviour

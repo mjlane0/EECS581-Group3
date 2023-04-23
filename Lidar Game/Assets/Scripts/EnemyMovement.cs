@@ -23,18 +23,24 @@ public class EnemyMovement : MonoBehaviour
     public NavMeshAgent agent;
     public float chaseRange;
 
+   // Set the enemy's speed using the NavMeshAgent component
     void Start()
     {
         agent.speed = speed;
     }
+
+    // Update the enemy's destination and path based on the player's position
     void Update()
     {
+        // Calculate the distance between the enemy and the player
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
+        // If the player is within the chase range, set the enemy's destination to the player's position
         if (distanceToPlayer <= chaseRange)
         {
             agent.SetDestination(player.position);
         }
+        // If the player is outside the chase range, reset the enemy's path
         else
         {
             agent.ResetPath();

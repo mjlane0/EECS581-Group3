@@ -25,25 +25,25 @@ using UnityEditor;
 public class RayCast : MonoBehaviour
 {
 
-	public LayerMask NotEnemy, Enemy, Exit;
-	public GameObject dot;
-	public Material whiteMat, blueMat, pinkMat;
-	public Object prefabRed, prefabGreen;
-	public float Spread;
-	public float lowSpread, medSpread, highSpread;
-	public float lowDistance, medDistance, highDistance;
-	public float ShootDistance;
-	public GameObject pauseMenu;
-    public bool isPaused;
-	int qPresses = 0;
-	int pPresses = 0;
-	AudioSource audioData;
-	bool audioOn = false;
+	public LayerMask NotEnemy, Enemy, Exit; // LayerMasks for different object types
+	public GameObject dot; // The dot prefab for marking raycast hits
+	public Material whiteMat, blueMat, pinkMat; // Materials for changing the dot color
+	public Object prefabRed, prefabGreen; // Prefabs for marking different types of raycast hits
+	public float Spread; // The spread of the raycast
+	public float lowSpread, medSpread, highSpread; // Preset spread values
+	public float lowDistance, medDistance, highDistance; // Preset shooting distance values
+	public float ShootDistance; // The shooting distance
+	public GameObject pauseMenu; // Reference to the pause menu
+	public bool isPaused; // Indicates if the game is paused
+	int qPresses = 0; // Counts the number of times the Q key is pressed
+	int pPresses = 0; // Counts the number of times the P key is pressed
+	AudioSource audioData; // Audio source for playing sound
+	bool audioOn = false; // Indicates if the audio is currently playing
 
 	void Start()
 	{
 		audioData = GetComponent<AudioSource>();
-		dot.GetComponent<MeshRenderer> ().material = whiteMat;
+		dot.GetComponent<MeshRenderer>().material = whiteMat;
 		Spread = medSpread;
 		ShootDistance = medDistance;
 	}
@@ -52,20 +52,27 @@ public class RayCast : MonoBehaviour
 	{
 		print(audioOn);
 		isPaused = pauseMenu.GetComponent<PauseMenu>().paused;
-        if(!isPaused)
+		
+		if (!isPaused)
 		{
-			CheckModeSwitch();
-			CheckColorSwitch();
+			CheckModeSwitch(); // Check if the user wants to change the shooting mode
+			CheckColorSwitch(); // Check if the user wants to change the dot color
 
+			// Create a ray with random spread around the transform's up direction
 			Ray ray = new Ray(transform.position, new Vector3(Random.Range(transform.up.x - Spread, transform.up.x + Spread), Random.Range(transform.up.y - Spread, transform.up.y + Spread), Random.Range(transform.up.z - Spread, transform.up.z + Spread)));
 			RaycastHit hitInfo;
+
+			// Handle raycasts when the left mouse button is held down
 			if (Input.GetKey(KeyCode.Mouse0))
 			{
-				if(audioOn == false)
+				// Play audio when shooting
+				if (audioOn == false)
 				{
 					audioData.Play(0);
 					audioOn = true;
 				}
+
+				// Check if the raycast hits an object in the NotEnemy layer
 				if (Physics.Raycast(ray, out hitInfo, ShootDistance, NotEnemy))
 				{
 					Debug.DrawLine(ray.origin, hitInfo.point, Color.red);
@@ -75,29 +82,34 @@ public class RayCast : MonoBehaviour
 				{
 					Debug.DrawLine(ray.origin, ray.origin + ray.direction * 100, Color.green);
 				}
+
+				// Check if the raycast hits an object in the Enemy layer
 				if (Physics.Raycast(ray, out hitInfo, ShootDistance, Enemy))
 				{
 					Debug.DrawLine(ray.origin, hitInfo.point, Color.red);
 					Object.Instantiate(prefabRed, hitInfo.point, Quaternion.identity);
 				}
+
+				// Check if the raycast hits an object in the Exit layer
 				if (Physics.Raycast(ray, out hitInfo, ShootDistance, Exit))
 				{
 					Debug.DrawLine(ray.origin, hitInfo.point, Color.red);
 					Object.Instantiate(prefabGreen, hitInfo.point, Quaternion.identity);
 				}
 			}
+			// Pause audio when not shooting
 			else
 			{
-				if(audioOn == true)
+				if (audioOn == true)
 				{
 					audioData.Pause();
 					audioOn = false;
 				}
 			}
 		}
-
 	}
 
+	// Check if the user wants to change the shooting mode and update the Spread and ShootDistance accordingly
 	void CheckModeSwitch()
 	{
 		if (Input.GetKeyDown(KeyCode.Q))
@@ -105,7 +117,7 @@ public class RayCast : MonoBehaviour
 			int qFinal = qPresses % 3;
 			qPresses++;
 			print("Spread Mode: " + qFinal);
-			switch(qFinal)
+			switch (qFinal)
 			{
 				case 0:
 				{
@@ -131,6 +143,7 @@ public class RayCast : MonoBehaviour
 		}
 	}
 
+	// Check if the user wants to change the dot color and update the dot's material accordingly
 	void CheckColorSwitch()
 	{
 		if (Input.GetKeyDown(KeyCode.P))
@@ -138,21 +151,21 @@ public class RayCast : MonoBehaviour
 			pPresses++;
 			int pFinal = pPresses % 3;
 			print("Color: " + pFinal);
-			switch(pFinal)
+			switch (pFinal)
 			{
 				case 0:
 				{
-					dot.GetComponent<MeshRenderer> ().material = whiteMat;		
+					dot.GetComponent<MeshRenderer>().material = whiteMat;
 					break;
 				}
 				case 1:
 				{
-					 dot.GetComponent<MeshRenderer> ().material = blueMat;	
+					dot.GetComponent<MeshRenderer>().material = blueMat;
 					break;
 				}
 				case 2:
 				{
-					 dot.GetComponent<MeshRenderer> ().material = pinkMat;	
+					dot.GetComponent<MeshRenderer>().material = pinkMat;
 					break;
 				}
 				default:
@@ -160,16 +173,22 @@ public class RayCast : MonoBehaviour
 			}
 		}
 	}
+
+	// Set the dot color to white
 	public void ColorWhite()
 	{
-		dot.GetComponent<MeshRenderer> ().material = whiteMat;
+		dot.GetComponent<MeshRenderer>().material = whiteMat;
 	}
+
+	// Set the dot color to blue
 	public void ColorBlue()
 	{
-		dot.GetComponent<MeshRenderer> ().material = blueMat;
+		dot.GetComponent<MeshRenderer>().material = blueMat;
 	}
+
+	// Set the dot color to pink
 	public void ColorPink()
 	{
-		dot.GetComponent<MeshRenderer> ().material = pinkMat;
+		dot.GetComponent<MeshRenderer>().material = pinkMat;
 	}
 }
