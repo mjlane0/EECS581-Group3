@@ -1,4 +1,9 @@
-﻿using System.Collections;
+/*
+	Michael Lane, Sam Jerguson
+
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
