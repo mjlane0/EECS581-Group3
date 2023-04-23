@@ -9,6 +9,24 @@ Revised April 8, 2022
 This file describes and controls the player's movement in the game including move speed, player cam, and other fundamental assets that aid the 
 player in traversing the enviornment
 
+Preconditions: 
+
+- The player GameObject must exist in the scene and have this script attached to it
+- The AudioSource component must be attached to the same GameObject as this script
+
+Postconditions: 
+
+- The player moves through the environment at the speed and orientation specified by the player input and camera rotation
+- The AudioSource component plays sound effects while the player is moving
+
+Error/exception conditions: 
+
+- If the AudioSource component is not found on the same GameObject as this script, an error will be thrown and the game may crash
+- If the UI GameObject does not exist in the scene or does not have a UI script attached to it, an error will be thrown and the game may crash
+
+Side Effects: 
+- The player moves and rotates based on player input and camera rotation
+
 No known Faults
 
 
