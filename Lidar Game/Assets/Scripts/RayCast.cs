@@ -3,7 +3,17 @@ RayCast Artifact
 Sam Jerguson
 Created October 23, 2022
 Revised December 4 2022
-This file controls and automates all raycasting features within teh game
+This file controls and automates all raycasting features within the game
+Preconditions: 
+- The RayCast script is attached to a GameObject in the game.
+- The PauseMenu script is attached to a separate GameObject in the game and is functioning properly.
+Postconditions: 
+- The RayCast script will control and automate all raycasting features within the game.
+Error/exception conditions: 
+- If the game is not running or the RayCast script is not attached to a GameObject in the game, an error will occur.
+- If the PauseMenu script is not attached to a separate GameObject or is not functioning properly, the isPaused variable may not be set correctly and could result in errors.
+Side Effects: 
+none
 No known Faults
 */
 
