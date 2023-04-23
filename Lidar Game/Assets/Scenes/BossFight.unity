@@ -666,7 +666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd999df4968f1d459b1efbb9093f4fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeRemaining: 5
+  timeRemaining: 20
   timerText: {fileID: 1096976840}
   walls:
   - {fileID: 667275086}
