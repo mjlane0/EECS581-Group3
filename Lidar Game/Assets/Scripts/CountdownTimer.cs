@@ -1,7 +1,7 @@
 ﻿/*
 Name of Artifact: CountdownTimer.cs
 Description: This script is designed to be used in a boss level, where it counts down from a specified value. Once the countdown reaches zero, the closing walls are deactivated, and the SetFinishJob method is called from another script, leading to the end of the game.
-Programmer's Name: Sam Jerguson
+Programmer's Name: Azdeen Jeljalane, Sam Jerguson
 Date Created: 4/8/2023
 Dates Updated: 4/8/2023 - Description: Whole file was completed in one session. Author: Sam Jerguson
 Preconditions: The script requires a Text component for the timer display, an array of wall GameObjects, a NavMeshAgent for the agent, and a reference to the player GameObject.
